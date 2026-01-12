@@ -22,9 +22,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
-        </TanStackProvider>
-
-        <div id="root"></div>
+        </TanStackProvider>      
       </body>
     </html>
   );

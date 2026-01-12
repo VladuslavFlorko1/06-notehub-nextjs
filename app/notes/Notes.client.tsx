@@ -17,9 +17,9 @@ import SearchBox from '@/components/SearchBox/SearchBox';
 import css from './NotesPage.module.css';
 
 export default function NotesClient() {
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [page, setPage] = useState<number>(1);
+  const [search, setSearch] = useState<string>('');
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const [debouncedSearch] = useDebounce(search, 500);
   const perPage = 12;
@@ -42,10 +42,15 @@ export default function NotesClient() {
   const notes: Note[] = data?.notes ?? [];
   const totalPages = data?.totalPages ?? 0;
 
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+    setPage(1);
+  };
+
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
-        <SearchBox value={search} onChange={setSearch} />
+        <SearchBox value={search} onChange={handleSearchChange} />
 
         {totalPages > 1 && (
           <Pagination
